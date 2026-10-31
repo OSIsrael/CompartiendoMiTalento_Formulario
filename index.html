@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compartiendo Mi Talento 2026 - Carmín II</title>
+    <style>
+        /* Fondo de noche tenebrosa con degradado radial */
+        body {
+            background: radial-gradient(circle at 50% 10%, #3b004a 0%, #110017 50%, #000000 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Cajón adaptable y con efecto cristal/resplandor */
+        .container {
+            width: 90%; /* Adaptable a cualquier celular */
+            max-width: 480px; /* Tamaño máximo para PC */
+            background-color: rgba(30, 0, 40, 0.75); /* Morado oscuro semi-transparente */
+            backdrop-filter: blur(8px); /* Desenfoque del fondo */
+            -webkit-backdrop-filter: blur(8px);
+            padding: 35px 25px;
+            border-radius: 20px;
+            border: 2px solid #ff6600;
+            box-shadow: 0 0 25px rgba(255, 102, 0, 0.4), inset 0 0 15px rgba(255, 102, 0, 0.2);
+            box-sizing: border-box; /* Evita que el padding rompa el ancho en celulares */
+        }
+
+        /* Animación de flotación para el título */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff9900;
+            text-shadow: 0 0 10px #ff6600;
+            margin-top: 0;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.1em;
+            color: #eebbff;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: 600;
+            color: #ffcc00;
+            font-size: 0.95em;
+        }
+
+        /* Campos de texto y selectores estilizados */
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-top: 8px;
+            border-radius: 10px;
+            border: 1px solid #ff6600;
+            background-color: rgba(20, 0, 30, 0.8);
+            color: #ffffff;
+            box-sizing: border-box;
+            font-size: 16px; /* 16px evita que los iPhone hagan zoom automático */
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]::placeholder {
+            color: #9977aa;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #ffcc00;
+            box-shadow: 0 0 12px rgba(255, 204, 0, 0.6);
+            background-color: rgba(40, 0, 60, 0.9);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-top: 15px;
+            accent-color: #ff6600; /* Color de la barra deslizable */
+        }
+
+        /* Botón con degradado y efecto de interacción */
+        .btn {
+            width: 100%;
+            background: linear-gradient(45deg, #ff4500, #ff8c00);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.7);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        #div-otro { display: none; }
+        #mensaje { text-align: center; margin-top: 20px; font-weight: bold; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎃 Mi Talento 2026 👻</h1>
+        <h2>Condominio Carmín II</h2>
+        
+        <form id="formulario-talentos">
+            <label for="nombres">Nombres y Apellidos:</label>
+            <!-- El oninput fuerza a mayúsculas mientras el usuario digita -->
+            <input type="text" id="nombres" name="nombres" required 
+                   oninput="this.value = this.value.toUpperCase();" 
+                   placeholder="Ingresa tu nombre completo">
+
+            <label for="talento">Defina el talento:</label>
+            <select id="talento" name="talento" required onchange="gestionarOtro()">
+                <option value="">Seleccione una opción...</option>
+                <option value="BAILE">BAILE</option>
+                <option value="CANTO">CANTO</option>
+                <option value="CANTO Y BAILE">CANTO Y BAILE</option>
+                <option value="DANZA / MAGIA">DANZA / MAGIA</option>
+                <option value="POESÍA">POESÍA</option>
+                <option value="OTRO">OTRO</option>
+            </select>
+
+            <div id="div-otro">
+                <label for="otro-talento">Especifique su talento:</label>
+                <input type="text" id="otro-talento" name="otro-talento" 
+                       oninput="this.value = this.value.toUpperCase();" 
+                       placeholder="Escriba su talento aquí">
+            </div>
+
+            <label for="tiempo">Tiempo de Actuación: <span id="tiempo-valor">3</span> minutos</label>
+            <input type="range" id="tiempo" name="tiempo" min="1" max="60" value="3" 
+                   oninput="document.getElementById('tiempo-valor').innerText = this.value;">
+
+            <button type="submit" class="btn">Inscribirme 🦇</button>
+        </form>
+        <p id="mensaje"></p>
+    </div>
+
+    <script>
+        function gestionarOtro() {
+            const talento = document.getElementById("talento").value;
+            const divOtro = document.getElementById("div-otro");
+            const inputOtro = document.getElementById("otro-talento");
+            
+            if (talento === "Otro") {
+                divOtro.style.display = "block";
+                inputOtro.required = true;
+                setTimeout(() => inputOtro.focus(), 100); // Pequeño efecto visual
+            } else {
+                divOtro.style.display = "none";
+                inputOtro.required = false;
+                inputOtro.value = "";
+            }
+        }
+
+        document.getElementById("formulario-talentos").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const btn = document.querySelector(".btn");
+            btn.innerText = "Enviando... 🧙‍♂️";
+            btn.disabled = true;
+
+            const nombres = document.getElementById("nombres").value;
+            let talento = document.getElementById("talento").value;
+            if (talento === "Otro") {
+                talento = document.getElementById("otro-talento").value;
+            }
+            const tiempo = document.getElementById("tiempo").value + " min";
+
+            // REEMPLAZA ESTA URL POR LA QUE COPIASTE EN APPS SCRIPT
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyavTpSV1e4pxOzs95wtI_Up3TYrxugP3AqimAJy8pljeeuxdvkHMmu7TPFGgeZ3P5t/exec';
+
+            const formData = new FormData();
+            formData.append("nombres", nombres);
+            formData.append("talento", talento);
+            formData.append("tiempo", tiempo);
+
+            fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: formData })
+                .then(() => {
+                    document.getElementById("mensaje").innerText = "¡Inscripción exitosa! Nos vemos en el evento. 🎃";
+                    document.getElementById("mensaje").style.color = "#aaffaa";
+                    document.getElementById("formulario-talentos").reset();
+                    document.getElementById("tiempo-valor").innerText = "3";
+                    gestionarOtro();
+                    btn.innerText = "Inscribirme 🦇";
+                    btn.disabled = false;
+                })
+                .catch(error => {
+                    document.getElementById("mensaje").innerText = "Hubo un problema. Intenta de nuevo.";
+                    document.getElementById("mensaje").style.color = "#ff6666";
+                    btn.innerText = "Inscribirme 🦇";
+                    btn.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>
