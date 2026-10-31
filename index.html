@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compartiendo Mi Talento 2026 - Carmín II</title>
     <style>
-        /* Fondo de noche tenebrosa con degradado radial */
         body {
             background: radial-gradient(circle at 50% 10%, #3b004a 0%, #110017 50%, #000000 100%);
             background-attachment: fixed;
@@ -19,21 +18,19 @@
             justify-content: center;
         }
 
-        /* Cajón adaptable y con efecto cristal/resplandor */
         .container {
-            width: 90%; /* Adaptable a cualquier celular */
-            max-width: 480px; /* Tamaño máximo para PC */
-            background-color: rgba(30, 0, 40, 0.75); /* Morado oscuro semi-transparente */
-            backdrop-filter: blur(8px); /* Desenfoque del fondo */
+            width: 90%; 
+            max-width: 480px; 
+            background-color: rgba(30, 0, 40, 0.75); 
+            backdrop-filter: blur(8px); 
             -webkit-backdrop-filter: blur(8px);
             padding: 35px 25px;
             border-radius: 20px;
             border: 2px solid #ff6600;
             box-shadow: 0 0 25px rgba(255, 102, 0, 0.4), inset 0 0 15px rgba(255, 102, 0, 0.2);
-            box-sizing: border-box; /* Evita que el padding rompa el ancho en celulares */
+            box-sizing: border-box; 
         }
 
-        /* Animación de flotación para el título */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-8px); }
@@ -64,7 +61,6 @@
             font-size: 0.95em;
         }
 
-        /* Campos de texto y selectores estilizados */
         input[type="text"], select {
             width: 100%;
             padding: 12px 15px;
@@ -74,7 +70,7 @@
             background-color: rgba(20, 0, 30, 0.8);
             color: #ffffff;
             box-sizing: border-box;
-            font-size: 16px; /* 16px evita que los iPhone hagan zoom automático */
+            font-size: 16px; 
             transition: all 0.3s ease;
         }
 
@@ -92,10 +88,9 @@
         input[type="range"] {
             width: 100%;
             margin-top: 15px;
-            accent-color: #ff6600; /* Color de la barra deslizable */
+            accent-color: #ff6600; 
         }
 
-        /* Botón con degradado y efecto de interacción */
         .btn {
             width: 100%;
             background: linear-gradient(45deg, #ff4500, #ff8c00);
@@ -126,12 +121,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎃 Mi Talento 2026 👻</h1>
+        <h1>🎃 Compartiendo Mi Talento 2026 👻</h1>
         <h2>Condominio Carmín II</h2>
         
         <form id="formulario-talentos">
             <label for="nombres">Nombres y Apellidos:</label>
-            <!-- El oninput fuerza a mayúsculas mientras el usuario digita -->
             <input type="text" id="nombres" name="nombres" required 
                    oninput="this.value = this.value.toUpperCase();" 
                    placeholder="Ingresa tu nombre completo">
@@ -169,10 +163,11 @@
             const divOtro = document.getElementById("div-otro");
             const inputOtro = document.getElementById("otro-talento");
             
-            if (talento === "Otro") {
+            // Corrección: ahora busca "OTRO" en mayúsculas
+            if (talento === "OTRO") {
                 divOtro.style.display = "block";
                 inputOtro.required = true;
-                setTimeout(() => inputOtro.focus(), 100); // Pequeño efecto visual
+                setTimeout(() => inputOtro.focus(), 100);
             } else {
                 divOtro.style.display = "none";
                 inputOtro.required = false;
@@ -188,12 +183,13 @@
 
             const nombres = document.getElementById("nombres").value;
             let talento = document.getElementById("talento").value;
-            if (talento === "Otro") {
+            
+            // Corrección: ahora busca "OTRO" en mayúsculas
+            if (talento === "OTRO") {
                 talento = document.getElementById("otro-talento").value;
             }
             const tiempo = document.getElementById("tiempo").value + " min";
 
-            // REEMPLAZA ESTA URL POR LA QUE COPIASTE EN APPS SCRIPT
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyavTpSV1e4pxOzs95wtI_Up3TYrxugP3AqimAJy8pljeeuxdvkHMmu7TPFGgeZ3P5t/exec';
 
             const formData = new FormData();
